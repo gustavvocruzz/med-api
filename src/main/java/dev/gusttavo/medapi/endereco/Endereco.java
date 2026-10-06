@@ -1,15 +1,12 @@
 package dev.gusttavo.medapi.endereco;
 
-import dev.gusttavo.medapi.dtos.DadosEndereco;
 import jakarta.persistence.Embeddable;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Embeddable
-@RequiredArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
-@Setter
 public class Endereco {
 
     private String logradouro;
