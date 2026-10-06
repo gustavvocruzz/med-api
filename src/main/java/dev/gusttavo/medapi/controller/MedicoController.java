@@ -1,35 +1,36 @@
 package dev.gusttavo.medapi.controller;
 
-import dev.gusttavo.medapi.dtos.DadosCadastroMedico;
-import dev.gusttavo.medapi.dtos.DadosEndereco;
-import dev.gusttavo.medapi.endereco.Endereco;
+import dev.gusttavo.medapi.medico.DadosCadastroMedico;
+import dev.gusttavo.medapi.medico.DadosListagemMedico;
 import dev.gusttavo.medapi.medico.Medico;
-import dev.gusttavo.medapi.repository.MedicoRepository;
+import dev.gusttavo.medapi.medico.MedicoRepository;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/medicos")
 public class MedicoController {
 
     @Autowired
-    private final MedicoRepository medicoRepository;
+    private MedicoRepository medicoRepository;
 
-    public MedicoController(MedicoRepository medicoRepository){
-        this.medicoRepository=medicoRepository;
-    }
 
 
     @PostMapping
     @Transactional
     public void cadastrar(@RequestBody @Valid DadosCadastroMedico dados) {
         medicoRepository.save(new Medico(dados));
+    }
+
+    @GetMapping
+    public Page<DadosListagemMedico> listar(Pageable paginacao){
+        return medicoRepository.findAll(paginacao).map(DadosListagemMedico::new);
     }
 
 
