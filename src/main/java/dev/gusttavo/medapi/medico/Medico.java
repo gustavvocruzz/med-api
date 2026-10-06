@@ -1,9 +1,7 @@
 package dev.gusttavo.medapi.medico;
 
-import dev.gusttavo.medapi.dtos.DadosCadastroMedico;
-import dev.gusttavo.medapi.dtos.DadosEndereco;
+import dev.gusttavo.medapi.endereco.DadosEndereco;
 import dev.gusttavo.medapi.endereco.Endereco;
-import dev.gusttavo.medapi.enums.Especialidade;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -18,6 +16,9 @@ public class Medico {
     private Long id;
     private String nome;
     private String email;
+
+    private String telefone;
+
     private String crm;
     @Enumerated(value = EnumType.STRING)
     private Especialidade especialidade;
@@ -25,12 +26,13 @@ public class Medico {
     @Embedded
     private Endereco endereco;
 
-    public Medico(DadosCadastroMedico dados){
+    public Medico(DadosCadastroMedico dados) {
         this.nome = dados.nome();
         this.email = dados.email();
+        this.telefone = dados.telefone();
         this.crm = dados.crm();
         this.especialidade = dados.especialidade();
-        this.endereco = new Endereco(new DadosEndereco(dados.endereco().getLogradouro(),dados.endereco().getBairro(),dados.endereco().getCep(),dados.endereco().getCidade(),dados.endereco().getUf(),dados.endereco().getComplemento(),dados.endereco().getNumero()));
+        this.endereco = new Endereco(dados.endereco());
     }
 
 }
