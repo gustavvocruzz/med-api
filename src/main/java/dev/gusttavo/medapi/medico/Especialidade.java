@@ -1,4 +1,4 @@
-package dev.gusttavo.medapi.enums;
+package dev.gusttavo.medapi.medico;
 
 public enum Especialidade {
     ORTOPEDIA,

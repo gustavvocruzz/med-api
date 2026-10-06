@@ -1,4 +1,4 @@
-package dev.gusttavo.medapi.dtos;
+package dev.gusttavo.medapi.endereco;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -16,5 +16,5 @@ public record DadosEndereco(
         @NotBlank
         String uf,
         String complemento,
-        String numero){
+        String numero) {
 }
