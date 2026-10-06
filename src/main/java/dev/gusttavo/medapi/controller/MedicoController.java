@@ -5,6 +5,7 @@ import dev.gusttavo.medapi.dtos.DadosEndereco;
 import dev.gusttavo.medapi.endereco.Endereco;
 import dev.gusttavo.medapi.medico.Medico;
 import dev.gusttavo.medapi.repository.MedicoRepository;
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,7 @@ public class MedicoController {
 
 
     @PostMapping
+    @Transactional
     public void cadastrar(@RequestBody @Valid DadosCadastroMedico dados) {
         medicoRepository.save(new Medico(dados));
     }
