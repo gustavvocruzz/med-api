@@ -1,7 +1,7 @@
-package dev.gusttavo.medapi.dtos;
+package dev.gusttavo.medapi.medico;
 
+import dev.gusttavo.medapi.endereco.DadosEndereco;
 import dev.gusttavo.medapi.endereco.Endereco;
-import dev.gusttavo.medapi.enums.Especialidade;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -25,5 +25,5 @@ public record DadosCadastroMedico(
         Especialidade especialidade,
 
         @NotNull @Valid
-        Endereco endereco) {
+        DadosEndereco endereco) {
 }
