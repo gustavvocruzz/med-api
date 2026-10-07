@@ -32,5 +32,13 @@ public class MedicoController {
         return medicoRepository.findAll(paginacao).map(DadosListagemMedico::new);
     }
 
+    @PutMapping
+    @Transactional
+    public void atualizar(@RequestBody @Valid DadosAtualizacaoMedico dadosAtualizacaoMedico){
+        var medico = medicoRepository.getReferenceById(dadosAtualizacaoMedico.id());
+        medico.atualizarInformacoes(dadosAtualizacaoMedico);
+    //Transactional ja faz a mudanca no Banco de Dados sozinho
+    }
+
 
 }

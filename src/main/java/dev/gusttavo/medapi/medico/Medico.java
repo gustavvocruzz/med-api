@@ -1,8 +1,10 @@
 package dev.gusttavo.medapi.medico;
 
+import dev.gusttavo.medapi.controller.DadosAtualizacaoMedico;
 import dev.gusttavo.medapi.endereco.DadosEndereco;
 import dev.gusttavo.medapi.endereco.Endereco;
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import lombok.*;
 
 @Entity
@@ -35,4 +37,17 @@ public class Medico {
         this.endereco = new Endereco(dados.endereco());
     }
 
+    public void atualizarInformacoes(@Valid DadosAtualizacaoMedico dadosAtualizacaoMedico) {
+        if(dadosAtualizacaoMedico.nome() != null){
+            this.nome = dadosAtualizacaoMedico.nome();
+        }
+
+        if(dadosAtualizacaoMedico.telefone() != null){
+            this.telefone = dadosAtualizacaoMedico.telefone();
+        }
+
+        if(dadosAtualizacaoMedico.endereco() != null){
+            this.endereco.atualizarInformacoes(dadosAtualizacaoMedico.endereco());
+        }
+    }
 }
